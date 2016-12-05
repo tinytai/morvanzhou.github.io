@@ -20,7 +20,7 @@ thumbnail: "/static/thumbnail/keras/07 RNN1.jpg"
 from keras.layers import SimpleRNN, Activation, Dense
 ```
 
-MNIST里面的图像分辨率是28×28，我们可以将图像理解为序列化数据。每一行作为一个输入单元，所以输入大小INPUT_SIZE = 28。先是第1行输入，再是第2行，第3行...第28行，这就是一张图片也就是一个序列，所以TIME_STEPS = 28。
+MNIST里面的图像分辨率是28×28，为了使用RNN，我们将图像理解为序列化数据。每一行作为一个输入单元，所以输入数据大小INPUT_SIZE = 28；先是第1行输入，再是第2行，第3行，第4行，...，第28行输入，这就是一张图片也就是一个序列，所以TIME_STEPS = 28。
 
 
 训练数据要进行归一化处理，因为原始数据是8bit灰度图像所以需要除以256。
@@ -36,7 +36,7 @@ X_test = X_test.reshape(-1, 28, 28) / 256.        # normalize
 model.add(SimpleRNN(
     # for batch_input_shape, if using tensorflow as the backend, we have to put None for the batch_size.
     # Otherwise, model.evaluate() will get error.
-    batch_input_shape=(None, TIME_STEPS, INPUT_SIZE),       # Or: input_dim=INPUT_SIZE, input_length=TIME_STEPS,
+    batch_input_shape=(None, TIME_STEPS, INPUT_SIZE),       
     output_dim=CELL_SIZE,
     unroll=True,
 ))
