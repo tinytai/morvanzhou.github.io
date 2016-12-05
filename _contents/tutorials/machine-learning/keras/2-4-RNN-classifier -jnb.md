@@ -20,7 +20,7 @@ thumbnail: "/static/thumbnail/keras/07 RNN1.jpg"
 from keras.layers import SimpleRNN, Activation, Dense
 ```
 
-MNIST里面的图像分辨率是28×28，为了使用RNN，我们将图像理解为序列化数据。每一行作为一个输入单元，所以输入数据大小INPUT_SIZE = 28；先是第1行输入，再是第2行，第3行，第4行，...，第28行输入，这就是一张图片也就是一个序列，所以TIME_STEPS = 28。
+MNIST里面的图像分辨率是28×28，为了使用RNN，我们将图像理解为序列化数据。每一行作为一个输入单元，所以输入数据大小INPUT_SIZE = 28；先是第1行输入，再是第2行，第3行，第4行，...，第28行输入，这就是一张图片也就是一个序列，所以步长TIME_STEPS = 28。
 
 
 训练数据要进行归一化处理，因为原始数据是8bit灰度图像所以需要除以256。
