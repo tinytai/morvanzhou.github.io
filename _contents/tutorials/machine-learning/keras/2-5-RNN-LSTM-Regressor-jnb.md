@@ -29,7 +29,7 @@ def get_batch():
     return [seq[:, :, np.newaxis], res[:, :, np.newaxis], xs]
 ```
 
-然后添加LSTM RNN层，输入为训练数据，输出数据大小由CELL_SIZE定义。因为每一个输入都对应一个输出，所以return_sequences=True。因为每一个点的当前输出都受前面所有输出的影响，即BATCH之间的参数也需要记忆，所有stateful=True
+然后添加LSTM RNN层，输入为训练数据，输出数据大小由CELL_SIZE定义。因为每一个输入都对应一个输出，所以return_sequences=True。每一个点的当前输出都受前面所有输出的影响，即BATCH之间的参数也需要记忆，故stateful=True
 
 ```python
 model.add(LSTM(
@@ -40,7 +40,7 @@ model.add(LSTM(
 ))
 ```
 
-最后添加输出层，因为LSTM层的每一步都有输出，所以使用TimeDistributed(）
+最后添加输出层，LSTM层的每一步都有输出，使用TimeDistributed(）
 
 ```python
 model.add(TimeDistributed(Dense(OUTPUT_SIZE)))
